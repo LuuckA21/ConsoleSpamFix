@@ -1,6 +1,5 @@
 package me.luucka.consolespamfix;
 
-import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.core.Filter;
@@ -11,14 +10,17 @@ import org.apache.logging.log4j.message.Message;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 public class LogFilter implements Filter {
 
     private final ConsoleSpamFixPlugin PLUGIN;
 
+    public LogFilter(ConsoleSpamFixPlugin PLUGIN) {
+        this.PLUGIN = PLUGIN;
+    }
+
     public Filter.Result checkMessage(String message) {
 
-        List<String> messagesToHide = this.PLUGIN.getConfig().getStringList("messages-to-hide");
+        List<String> messagesToHide = PLUGIN.getConfig().getStringList("messages-to-hide");
 
         for (String msg : messagesToHide) {
             if (message.toLowerCase().contains(msg.toLowerCase())) return Result.DENY;
