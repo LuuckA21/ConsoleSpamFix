@@ -10,7 +10,4 @@ public final class ConsoleSpamFixPlugin extends JavaPlugin {
         saveDefaultConfig();
         ((Logger) LogManager.getRootLogger()).addFilter(new LogFilter(this));
     }
-
-    public void onDisable() {
-    }
 }
