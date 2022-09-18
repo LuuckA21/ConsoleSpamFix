@@ -12,17 +12,17 @@ import java.util.List;
 
 public class LogFilter implements Filter {
 
-    private final ConsoleSpamFixPlugin PLUGIN;
+    private final ConsoleSpamFixPlugin plugin;
 
-    public LogFilter(ConsoleSpamFixPlugin PLUGIN) {
-        this.PLUGIN = PLUGIN;
+    public LogFilter(final ConsoleSpamFixPlugin plugin) {
+        this.plugin = plugin;
     }
 
     public Filter.Result checkMessage(String message) {
 
-        List<String> messagesToHide = PLUGIN.getConfig().getStringList("messages-to-hide");
+        final List<String> messagesToHide = plugin.getConfig().getStringList("messages-to-hide");
 
-        for (String msg : messagesToHide) {
+        for (final String msg : messagesToHide) {
             if (message.toLowerCase().contains(msg.toLowerCase())) return Result.DENY;
         }
 
