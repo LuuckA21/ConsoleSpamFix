@@ -8,8 +8,6 @@ import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.Logger;
 import org.apache.logging.log4j.message.Message;
 
-import java.util.List;
-
 public class LogFilter implements Filter {
 
     private final ConsoleSpamFixPlugin plugin;
@@ -19,13 +17,9 @@ public class LogFilter implements Filter {
     }
 
     public Filter.Result checkMessage(String message) {
-
-        final List<String> messagesToHide = plugin.getConfig().getStringList("messages-to-hide");
-
-        for (final String msg : messagesToHide) {
+        for (final String msg : plugin.getConfig().getStringList("messages-to-hide")) {
             if (message.toLowerCase().contains(msg.toLowerCase())) return Result.DENY;
         }
-
         return Result.NEUTRAL;
     }
 
@@ -37,7 +31,8 @@ public class LogFilter implements Filter {
         }
     }
 
-    public void initialize() {}
+    public void initialize() {
+    }
 
     public boolean isStarted() {
         return true;
@@ -47,9 +42,11 @@ public class LogFilter implements Filter {
         return false;
     }
 
-    public void start() {}
+    public void start() {
+    }
 
-    public void stop() {}
+    public void stop() {
+    }
 
     public Filter.Result filter(LogEvent event) {
         return checkMessage(event.getMessage().getFormattedMessage());

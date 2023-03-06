@@ -1,8 +1,8 @@
 name: ConsoleSpamFix
 version: '${project.version}'
 main: me.luucka.consolespamfix.ConsoleSpamFixPlugin
-api-version: 1.18
+api-version: 1.19
 load: STARTUP
-authors: [ Luucka ]
-description: Stop the console spam errors.
-loadbefore: [LuckPerms]
+authors: [ LuuckA ]
+description: Stop console spam errors.
+loadbefore: [ LuckPerms ]
