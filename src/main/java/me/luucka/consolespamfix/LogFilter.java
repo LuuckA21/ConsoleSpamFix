@@ -8,6 +8,8 @@ import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.Logger;
 import org.apache.logging.log4j.message.Message;
 
+import java.util.List;
+
 public class LogFilter implements Filter {
 
     private final ConsoleSpamFixPlugin plugin;
@@ -17,7 +19,8 @@ public class LogFilter implements Filter {
     }
 
     public Filter.Result checkMessage(String message) {
-        for (final String msg : plugin.getConfig().getStringList("messages-to-hide")) {
+        final List<String> messagesToHide = plugin.getConfig().getStringList("messages-to-hide");
+        for (String msg : messagesToHide) {
             if (message.toLowerCase().contains(msg.toLowerCase())) return Result.DENY;
         }
         return Result.NEUTRAL;
